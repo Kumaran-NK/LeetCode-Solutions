@@ -14,7 +14,7 @@ class Solution {
                 left = mid + 1;
             }
         }
-        System.out.println(left + " " + right + " "+ mid);
+
         return left;
      
     }
