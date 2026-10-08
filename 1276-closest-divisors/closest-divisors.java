@@ -9,7 +9,7 @@ class Solution {
         for(int i = 1; i * i <= first; i++){
             if(first % i == 0){
                 int pair = first / i;
-                if(i * pair == first);
+                if(i * pair == first)
                 list1.add(new int[]{i, pair});
             }
         }
@@ -45,11 +45,14 @@ class Solution {
         }
 
         for(int[] arr : list1)
-        System.out.println(Arrays.toString(arr));
-
-        for(int[] arr : list2)
-        System.out.println(Arrays.toString(arr));
+        System.out.print(Arrays.toString(arr) + " ");
         
+        System.out.println();
+        for(int[] arr : list2)
+        System.out.print(Arrays.toString(arr) + " ");
+
+        System.out.println();
+
         System.out.println(Arrays.toString(arr1));
         System.out.println(Arrays.toString(arr2));
 
