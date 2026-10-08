@@ -44,8 +44,12 @@ class Solution {
             }
         }
 
-        System.out.println(list1);
-        System.out.println(list2);
+        for(int[] arr : list1)
+        System.out.println(Arrays.toString(arr));
+
+        for(int[] arr : list2)
+        System.out.println(Arrays.toString(arr));
+        
         System.out.println(Arrays.toString(arr1));
         System.out.println(Arrays.toString(arr2));
 
