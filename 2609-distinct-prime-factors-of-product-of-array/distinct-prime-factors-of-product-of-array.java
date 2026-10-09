@@ -15,7 +15,7 @@ class Solution {
                 set.add(i);
             }
         }
-        System.out.println(set);
+        
         return set.size();
     }
 }
