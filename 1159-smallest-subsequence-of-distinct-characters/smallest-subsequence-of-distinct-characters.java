@@ -6,26 +6,6 @@ class Solution {
             map.put(c, map.getOrDefault(c, 0) + 1);
         }
        Stack<Character> stack = new Stack<>();
-    //    for(int i = 0; i < s.length(); i++){
-    //         if(i == 0){
-    //             stack.push(s.charAt(i));
-    //             continue;
-    //         }
-            
-    //         if(stack.contains(s.charAt(i))) continue;
-
-    //         char comp = stack.peek();
-
-    //         if(s.charAt(i) > comp){
-    //             stack.push(s.charAt(i));
-    //         }
-    //         else{
-    //             stack.pop();
-    //             stack.push(s.charAt(i));
-    //         }
-    //    }
-    //    System.out.println(map);
-    //    System.out.println(stack);
 
     for(int i = 0; i < s.length(); i++){
         char val = s.charAt(i);
