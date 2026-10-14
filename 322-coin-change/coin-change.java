@@ -1,29 +1,25 @@
 class Solution {
     public int coinChange(int[] coins, int amount) {
-        long[][] dp = new long[coins.length][amount + 1];
-        for(long[] arr : dp){
+
+        int[][] dp = new int[coins.length + 1][amount + 1];
+        for(int[] arr : dp){
             Arrays.fill(arr, -1);
         }
-        
-
-        long val = combine(coins, coins.length - 1, amount, dp);
-        return val>=Integer.MAX_VALUE ? -1 : (int)val;
+        int val = helper(coins, 0, amount, dp);
+        return val >= Integer.MAX_VALUE / 2 ? -1 : val;
     }
-
-    public long combine(int[] coins, int i, int amount, long[][] dp){
-        if(i < 0){
-            return amount==0 ? 0 : Integer.MAX_VALUE;
-        }
-
+    public int helper(int[] coins, int i, int amount, int[][] dp){
+        
+        if(amount == 0) return 0;
+        if(i >= coins.length) return Integer.MAX_VALUE / 2;
+        
         if(dp[i][amount] != -1) return dp[i][amount];
-        
-        long include = Integer.MAX_VALUE;
+        int take = Integer.MAX_VALUE / 2;
         if(coins[i] <= amount)
-        include = 1 + combine(coins, i, amount - coins[i], dp);
+        take = 1 + helper(coins, i, amount - coins[i], dp);
 
-        long exclude =  combine(coins, i - 1, amount, dp);
-        
-        dp[i][amount] = Math.min(include, exclude);
-        return dp[i][amount];
+        int skip = helper(coins, i + 1, amount, dp);
+
+        return dp[i][amount] = Math.min(take, skip);
     }
 }
