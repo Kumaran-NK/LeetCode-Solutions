@@ -2,26 +2,19 @@ class Solution {
     public int largestRectangleArea(int[] heights) {
         Stack<Integer> stack = new Stack<>();
         int max = 0;
-        int n = heights.length;
+        for(int i = 0; i <= heights.length; i++){
+            int curr = i == heights.length ? 0 : heights[i];
 
-        for (int i = 0; i <= n; i++) {
-            int currentHeight = (i == n) ? 0 : heights[i];
+            while(!stack.isEmpty() && heights[stack.peek()] > curr){
+                int val = heights[stack.pop()];
+                int left = stack.isEmpty() ? - 1 : stack.peek();
 
-            while (!stack.isEmpty() &&
-                   heights[stack.peek()] > currentHeight) {
-
-                int height = heights[stack.pop()];
-                int left = stack.isEmpty() ? -1 : stack.peek();
                 int width = i - left - 1;
-
-                max = Math.max(max, height * width);
+                max = Math.max(max, width * val);
             }
 
-            if (i < n) {
-                stack.push(i);
-            }
+            stack.push(i);
         }
-
         return max;
     }
 }
