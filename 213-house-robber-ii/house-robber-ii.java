@@ -1,40 +1,32 @@
 class Solution {
     public int rob(int[] nums) {
         int[][] dp = new int[nums.length + 1][2];
+        
         for(int[] arr : dp){
-            Arrays.fill(arr, - 1);
+            Arrays.fill(arr, -1);
         }
-        return robbing(nums, 0 , false, dp);
+        return helper(nums, 0, dp, false);
     }
 
-    public int robbing(int[] nums, int i , boolean flag, int[][] dp){
+    public int helper(int[] nums, int i, int[][] dp, boolean flag){
         if(i >= nums.length) return 0;
-        if(i == nums.length - 1 && flag) return 0;
-        
-        int state;
-        if(flag){
-            state = 0;
-        }
-        else{
-            state = 1;
-        }
+        if(i == nums.length - 1 && flag) return 0; 
 
-        if(dp[i][state] != -1){
-            return dp[i][state];
-        }
+        int state = flag ? 0 : 1;
+        if(dp[i][state] != -1) return dp[i][state];
+
         
-        int robb;
+
+        int take;
         if(i == 0){
-            robb = nums[i] + robbing(nums, i + 2, true, dp);
+            take = nums[i] + helper(nums, i + 2, dp, true);
         }
         else{
-            robb = nums[i] + robbing(nums, i + 2, flag, dp);
+            take = nums[i] + helper(nums, i + 2, dp, flag);
         }
         
+        int skip = helper(nums, i + 1, dp, flag);
 
-        int skip = robbing(nums, i + 1, flag, dp);
-
-        dp[i][state] = Math.max(robb, skip);
-        return dp[i][state];
+        return dp[i][state] = Math.max(take, skip);
     }
 }
