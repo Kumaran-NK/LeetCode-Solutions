@@ -1,25 +1,17 @@
 class Solution {
-    
     public int rob(int[] nums) {
         int[] dp = new int[nums.length + 1];
         Arrays.fill(dp, - 1);
-        return robbing(nums, dp, 0);
-        
-         
+        return helper(nums, 0, dp);
     }
 
-    
-    public int robbing(int[] nums, int[] dp, int i){
+    public int helper(int[] nums, int i, int[] dp){
         if(i >= nums.length) return 0;
 
-        if(dp[i] != -1){
-            return dp[i];
-        }
-        int nonAdj = nums[i] + robbing(nums,dp, i + 2);
-        int adj = robbing(nums, dp,  i + 1);
+        if(dp[i] != -1) return dp[i];
+        int take = nums[i] + helper(nums, i + 2, dp);
+        int skip = helper(nums, i + 1, dp);
 
-        dp[i] = Math.max(nonAdj, adj);
-        return dp[i];
-        
+        return dp[i] = Math.max(take, skip);
     }
 }
