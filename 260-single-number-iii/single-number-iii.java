@@ -1,22 +1,28 @@
 class Solution {
     public int[] singleNumber(int[] nums) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for(int i : nums){
-            map.put(i, map.getOrDefault(i, 0) + 1);
-        }
-        int size = 0;
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-            if(entry.getValue() == 1) size++;
-        }
+        Arrays.sort(nums);
+        List<Integer> list = new ArrayList<>();
 
-        int[] res = new int[size];
         int i = 0;
-        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-            if(entry.getValue() == 1) {
-                res[i++] = entry.getKey();
-            }   
+        while(i < nums.length){
+            if(i + 1 >= nums.length){
+                list.add(nums[i]);
+                break;
+            } 
+            if(nums[i] != nums[i + 1]){
+                list.add(nums[i]);
+                i++;
+            }
+            else{
+                i += 2;
+            }
         }
 
-        return res;
+        int[] arr = new int[list.size()];
+        for(int j = 0; j < list.size(); j++){
+            arr[j] = list.get(j);
+        }
+
+        return arr;
     }
 }
