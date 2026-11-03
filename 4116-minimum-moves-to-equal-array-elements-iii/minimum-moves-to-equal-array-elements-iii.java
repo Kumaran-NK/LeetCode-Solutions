@@ -10,11 +10,13 @@ class Solution {
             if(nums[i] == max){
                 continue;
             }
-            int val = nums[i];
-            while(val != max){
-                result++;
-                val++;
-            }
+            // int val = nums[i];
+            // while(val != max){
+            //     result++;
+            //     val++;
+            // }
+
+            result += max - nums[i];
         }
         return result;
     }
